@@ -15,7 +15,13 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             List{
-                ForEach(toDoItems) { item in Text(item.description)
+                ForEach(toDoItems) { item in
+                    HStack {
+                        VStack(alignment: .leading, content: {
+                            Text(item.priority).font(.headline)
+                            Text(item.description)
+                        })
+                    }
                 }
                 .onMove(perform: {indices, newOffset in toDoItems.move(fromOffsets: indices, toOffset: newOffset)
                 })
